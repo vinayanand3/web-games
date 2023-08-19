@@ -4,7 +4,7 @@ const ctx = canvas.getContext('2d');
 const clouds = [];
 const startBanner = document.getElementById('startBanner');
 const startButton = document.getElementById('startButton');
-const INITIAL_OBSTACLE_SPEED = 0.5;
+const INITIAL_OBSTACLE_SPEED = 1;
 const obstacles = [];
 const thresholdX = canvas.width - 50;
 
@@ -23,9 +23,10 @@ let dinoImage = new Image();
 let obstacleImage = new Image();
 let cloudsImage = new Image();
 
-//scores
+//scores and
 let score = 0;
 let gameState = "running";  // Possible values: "running", "completed", "ended"
+let level =0;
 
 
 dinoImage.src = 'dino_2.svg';
@@ -126,10 +127,8 @@ function generateObstacle() {
     }
 }
 
-
 let jumpCompleted = false;
 let atJumpPeak = false;
-
 
 function update() {
     if (dino.jumping) {
@@ -164,7 +163,6 @@ function update() {
 
         // Remove the obstacle if it's near the dino's spawning area
         if (obstacles[i].x < 100) { // *********** dino.x - 30
-            console.log(obstacles[i].x + obstacles[i].width)
             obstacles.splice(i, 1);
             i--;
         }
@@ -172,6 +170,8 @@ function update() {
 
     if (dino.x + dino.width >= canvas.width) {
         gameState = "completed";
+        level++;  // Increment the level
+        document.getElementById('nextLevelButton').textContent = "Next Level: " + level;
         return;
     }
 }
@@ -261,15 +261,14 @@ startButton.addEventListener('click', function() {
 
 
 document.getElementById('startButton').addEventListener('click', function() {
-    console.log("startbutton", obstacle.speed)
     document.getElementById('startBanner').style.display = 'none';
     gameState = "running";
+    gameLoop();  // Start the game loop
     resetGame();
     // gameLoop();
 });
 
 document.getElementById('restartButton').addEventListener('click', function() {
-    console.log("restart button", obstacle.speed)
     document.getElementById('endBanner').style.display = 'none';
     gameState = "running";
     resetGame();  // This will reset the game to its initial state without increasing the speed
@@ -293,34 +292,8 @@ window.addEventListener('resize', function() {
     obstacle.y = groundLevel + 20;
 });
 
-gameLoop();  // Start the game loop
+// gameLoop();  // Start the game loop
 
 
 //todo -- work on the reset speed
 //todo -- add the spinner animation while waiting for the user
-
-
-
-
-// Start Game After Images Load
-// let imagesLoaded = 0;
-
-// dinoImage.onload = function() {
-//     imagesLoaded++;
-//     if (imagesLoaded === 3) {
-//         gameLoop();
-//     }
-// };
-
-// obstacleImage.onload = function() {
-//     imagesLoaded++;
-//     if (imagesLoaded === 3) {
-//     }
-// };
-
-// cloudsImage.onload = function() {
-//     imagesLoaded++;
-//     if (imagesLoaded === 3) {
-//         gameLoop();
-//     }
-// };
