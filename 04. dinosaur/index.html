@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dino Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+
+    <div id="startBanner">
+        <h2>Welcome to Dino Game</h2>
+        <button id="startButton">Start Game</button>
+        <h2>Press anywhere to jump</h2>
+    </div>
+    <div id="endBanner" style="display: none;">
+        <button id="restartButton">Restart</button>
+    </div>
+    <div id="levelCompletedBanner" style="display: none;">
+        <button id="nextLevelButton">Next Level</button>
+    </div>
+
+    <canvas id="gameCanvas" width="800" height="300"></canvas>
+    <script src="script.js"></script>
+</body>
+
+</html>

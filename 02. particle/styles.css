@@ -1,0 +1,19 @@
+body {
+    background: black;
+    margin: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    /* cursor: none; */
+}
+
+#cursorIcon {
+    position: absolute;
+    pointer-events: none; /* Ensures the icon doesn't interfere with clicks */
+    z-index: 9999; /* Keeps the icon above other elements */
+    display: block; /* Override the 'display: none' from the HTML */
+    font-size: 24px; /* Adjust size as needed */
+    color: red; /* Adjust color as needed */
+}
+     
